@@ -4,7 +4,7 @@ public class JavaDayTwo {
 
     public static void main(String[] args) {
 
-        //hi this is my first change.
+        // hi this is my first change.
 
         Scanner scanner = new Scanner(System.in);
         boolean userChoice = true;
@@ -14,7 +14,34 @@ public class JavaDayTwo {
 
             double a;
             double b;
+            int input;
 
+            while (true) {
+
+                // Show menu
+                System.out.println("\nWhich action do you want to perform?");
+                System.out.println("1. Addition");
+                System.out.println("2. Subtraction");
+                System.out.println("3. Multiplication");
+                System.out.println("4. Division");
+                System.out.println("5. Remainder");
+                System.out.println("---------------------------------");
+
+                if (scanner.hasNextInt()) {
+
+                    input = scanner.nextInt();
+
+                    if (input >= 1 && input <= 5) {
+                        break;
+                    } else {
+                        System.out.println("Enter a valid option (1-5).");
+                    }
+
+                } else {
+                    System.out.println("Enter a valid number.");
+                    scanner.next(); // clear invalid input
+                }
+            }
             // Validate first number
             while (true) {
 
@@ -23,8 +50,7 @@ public class JavaDayTwo {
                 if (scanner.hasNextDouble()) {
                     a = scanner.nextDouble();
                     break;
-                } 
-                else {
+                } else {
                     System.out.println("-----------------------------");
                     System.out.println("Enter a valid number");
                     System.out.println("-----------------------------");
@@ -40,29 +66,18 @@ public class JavaDayTwo {
                 if (scanner.hasNextDouble()) {
                     b = scanner.nextDouble();
                     break;
-                } 
-                else {
+                } else {
                     System.out.println("-----------------------------");
                     System.out.println("Enter a valid number");
                     System.out.println("-----------------------------");
                     scanner.next(); // Clear invalid input
                 }
             }
-
-            // Show menu
-            System.out.println("\nWhich action do you want to perform?");
-            System.out.println("1. Addition");
-            System.out.println("2. Subtraction");
-            System.out.println("3. Multiplication");
-            System.out.println("4. Division");
-            System.out.println("5. Remainder");
-            System.out.println("---------------------------------");
-
-            int input = scanner.nextInt();
-
             // Prevent division/remainder by zero
             if ((input == 4 || input == 5) && b == 0) {
+                System.out.println("---------------------------------------------");
                 System.out.println("You can't divide or find a remainder by zero.");
+                System.out.println("----------------------------------------------");
                 continue;
             }
 
@@ -75,11 +90,11 @@ public class JavaDayTwo {
 
             // Store results in an array
             double[] result = {
-                addition,
-                subtraction,
-                multiplication,
-                division,
-                remainder
+                    addition,
+                    subtraction,
+                    multiplication,
+                    division,
+                    remainder
             };
 
             // Display result
@@ -105,12 +120,13 @@ public class JavaDayTwo {
 
                 if (option.equalsIgnoreCase("y")) {
                     break;
-                } 
-                else if (option.equalsIgnoreCase("n")) {
+                } else if (option.equalsIgnoreCase("n")) {
+                    System.out.println("------------------");
+                    System.out.println("Thanks for playing");
+                    System.out.println("------------------");
                     userChoice = false;
                     break;
-                } 
-                else {
+                } else {
                     System.out.println("Enter a valid input");
                 }
             }
@@ -119,4 +135,3 @@ public class JavaDayTwo {
         scanner.close();
     }
 }
-

@@ -4,6 +4,8 @@ public class JavaDayTwo {
 
     public static void main(String[] args) {
 
+        //hi this is my first change
+
         Scanner scanner = new Scanner(System.in);
         boolean userChoice = true;
 

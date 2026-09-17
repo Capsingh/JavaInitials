@@ -18,14 +18,17 @@ public class JavaDayTwo {
 
             while (true) {
 
-                // Show menu
-                System.out.println("\nWhich action do you want to perform?");
-                System.out.println("1. Addition");
-                System.out.println("2. Subtraction");
-                System.out.println("3. Multiplication");
-                System.out.println("4. Division");
-                System.out.println("5. Remainder");
-                System.out.println("---------------------------------");
+                showMenu();
+
+/*
+                hint for ahead architecture related
+                addition(a,b);
+                subtraction(a,b);
+                multiplication(a,b);
+                division(a,b);
+                remainder(a,b);
+*/
+
 
                 if (scanner.hasNextInt()) {
 
@@ -133,5 +136,16 @@ public class JavaDayTwo {
         }
 
         scanner.close();
+    }
+
+    public static void showMenu(){
+        System.out.println("""
+                                      Which action do you want to perform?
+                                      1. Addition
+                                      2. Subtraction
+                                      3. Multiplication
+                                      4. Division
+                                      5. Remainder \s
+                                     \s""");
     }
 }

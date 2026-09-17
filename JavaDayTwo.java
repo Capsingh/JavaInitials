@@ -12,41 +12,12 @@ public class JavaDayTwo {
         // Main loop
         while (userChoice) {
 
-            double a;
-            double b;
             int input = getValidOperation(scanner);
 
-            // Validate first number
-            while (true) {
+            double a = getValidNumber(scanner,"first");
+            double b = getValidNumber(scanner,"second");
 
-                System.out.print("Enter the first number: ");
 
-                if (scanner.hasNextDouble()) {
-                    a = scanner.nextDouble();
-                    break;
-                } else {
-                    System.out.println("-----------------------------");
-                    System.out.println("Enter a valid number");
-                    System.out.println("-----------------------------");
-                    scanner.next(); // Clear invalid input
-                }
-            }
-
-            // Validate second number
-            while (true) {
-
-                System.out.print("Enter the second number: ");
-
-                if (scanner.hasNextDouble()) {
-                    b = scanner.nextDouble();
-                    break;
-                } else {
-                    System.out.println("-----------------------------");
-                    System.out.println("Enter a valid number");
-                    System.out.println("-----------------------------");
-                    scanner.next(); // Clear invalid input
-                }
-            }
             // Prevent division/remainder by zero
             if ((input == 4 || input == 5) && b == 0) {
                 System.out.println("---------------------------------------------");
@@ -54,35 +25,12 @@ public class JavaDayTwo {
                 System.out.println("----------------------------------------------");
                 continue;
             }
-
-            // Perform operations
-            double addition = a + b;
-            double subtraction = a - b;
-            double multiplication = a * b;
-            double division = a / b;
-            double remainder = a % b;
-
-            // Store results in an array
-            double[] result = {
-                    addition,
-                    subtraction,
-                    multiplication,
-                    division,
-                    remainder
-            };
-
+            double result = calculate(a, b, input);
+            String operation = getOperationName(input);
             // Display result
             System.out.println("-----------------------------------");
-
-            switch (input) {
-                case 1 -> System.out.println("Your result is: " + result[0]);
-                case 2 -> System.out.println("Your result is: " + result[1]);
-                case 3 -> System.out.println("Your result is: " + result[2]);
-                case 4 -> System.out.println("Your result is: " + result[3]);
-                case 5 -> System.out.println("Your result is: " + result[4]);
-                default -> System.out.println("Enter a valid option");
-            }
-
+            System.out.println("Operation:" + operation);
+            System.out.println("Your answer is " + result);
             System.out.println("-----------------------------------");
 
             // Play again loop
@@ -109,14 +57,15 @@ public class JavaDayTwo {
         scanner.close();
     }
 
-    public static void showMenu(){
+    public static void showMenu() {
         System.out.println("""
                                       Which action do you want to perform?
                                       1. Addition
                                       2. Subtraction
                                       3. Multiplication
                                       4. Division
-                                      5. Remainder \s
+                                      5. Remainder
+                                       --------------------------------------\s
                                      \s""");
     }
 
@@ -139,5 +88,45 @@ public class JavaDayTwo {
                 scanner.next(); // clear invalid input
             }
         }
+    }
+
+    public static double getValidNumber(Scanner scanner, String numberName){
+
+
+            while (true) {
+                System.out.print("Enter the " + numberName + " number: ");
+
+                if (scanner.hasNextDouble()) {
+                    return scanner.nextDouble();
+                }
+                else {
+                    System.out.println("-----------------------------");
+                    System.out.println("Enter a valid number");
+                    System.out.println("-----------------------------");
+                    scanner.next(); // Clear invalid input
+                }
+            }
+    }
+    public static double calculate(double a, double b, int input){
+
+        return switch (input) {
+            case 1 -> a+b;
+            case 2 -> a-b;
+            case 3 -> a*b;
+            case 4 -> a/b;
+            case 5 -> a%b;
+            default -> throw new IllegalArgumentException("Invalid operation: " + input);
+        };
+    }
+
+    public static String getOperationName(int input){
+            return switch(input){
+                case 1-> "Addition";
+                case 2-> "Subtraction";
+                case 3-> "Multiplication";
+                case 4-> "Division";
+                case 5-> "Remainder";
+                default -> "Invalid Operation:";
+        };
     }
 }

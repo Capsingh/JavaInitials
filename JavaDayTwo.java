@@ -14,37 +14,8 @@ public class JavaDayTwo {
 
             double a;
             double b;
-            int input;
+            int input = getValidOperation(scanner);
 
-            while (true) {
-
-                showMenu();
-
-/*
-                hint for ahead architecture related
-                addition(a,b);
-                subtraction(a,b);
-                multiplication(a,b);
-                division(a,b);
-                remainder(a,b);
-*/
-
-
-                if (scanner.hasNextInt()) {
-
-                    input = scanner.nextInt();
-
-                    if (input >= 1 && input <= 5) {
-                        break;
-                    } else {
-                        System.out.println("Enter a valid option (1-5).");
-                    }
-
-                } else {
-                    System.out.println("Enter a valid number.");
-                    scanner.next(); // clear invalid input
-                }
-            }
             // Validate first number
             while (true) {
 
@@ -147,5 +118,26 @@ public class JavaDayTwo {
                                       4. Division
                                       5. Remainder \s
                                      \s""");
+    }
+
+    public static int getValidOperation(Scanner scanner){
+
+        while(true) {
+            showMenu();
+
+            if (scanner.hasNextInt()) {
+
+                int input = scanner.nextInt();
+
+                if (input >= 1 && input <= 5) {
+                    return input;
+                } else {
+                    System.out.println("Enter a valid option (1-5).");
+                }
+            } else {
+                System.out.println("Enter a valid number.");
+                scanner.next(); // clear invalid input
+            }
+        }
     }
 }
